@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sprite Maker</title>
+    <meta charset="utf-8" />
+    <style>
+      body {
+	  font-family: sans-serif;
+      }
+
+      .colour {
+	  width: 40px;
+	  height: 40px;
+	  display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="colours"></div>
+    <canvas id="canvas"></canvas>
+    <textarea id="output"></textarea>
+    <script>
+      let currentColour = 0;
+
+      let colours = [
+	  "#000000",//0x00
+	  "#0000AA",//0x01
+	  "#00AA00",//0x02
+	  "#00AAAA",//0x03
+	  "#AA0000",//0x04
+	  "#AA00AA",//0x05
+	  "#AA5500",//0x06
+	  "#AAAAAA",//0x07
+	  "#555555",//0x08
+	  "#5555FF",//0x09
+	  "#55FF55",//0x0a
+	  "#55FFFF",//0x0b
+	  "#FF5555",//0x0c
+	  "#FF55FF",//0x0d
+	  "#FFFF55",//0x0e
+	  "#FFFFFF",//0x0f
+	  "#000000" //0x10
+      ];
+
+      for(let i in colours) {
+	  let colour = colours[i];
+	  let celm = document.createElement("div");
+	  celm.classList.add("colour");
+	  celm.style.backgroundColor = colour;
+	  celm.addEventListener("click", function() {
+	      currentColour = Number(i);
+	      console.log(currentColour);
+	  });
+	  document.querySelector("#colours").appendChild(celm);
+      }
+      
+      let canvas = document.querySelector("#canvas");
+      let ctx = canvas.getContext('2d');
+      canvas.width = canvas.style.width = 160;
+      canvas.width = canvas.style.width = 160;
+
+      let sprite = Array(256);
+      for(let i = 0; i < 256; i++) {sprite[i] = 0x10;}
+
+      canvas.addEventListener("click", function(e) {
+	  //console.log(e);
+	  console.log(sprite, ((e.layerY / 10) * 16), (e.layerX / 10));
+
+	  sprite[(Math.floor(e.layerY / 10) * 16) + Math.floor(e.layerX / 10)] = currentColour;
+	  render();
+      });
+
+      function render() {
+	  ctx.clearRect(0,0,160,160);
+	  
+	  for(let x = 0; x < 16; x++) {
+	      for(let y = 0; y < 16; y++) {
+		  let c =sprite[(y * 16) + x];
+		  if(c == 0x10) {
+		      ctx.strokeStyle = "#000";
+		      ctx.fillStyle = "#000000";
+		      ctx.fillRect(x * 10 + 4, y * 10 + 4, 2, 2);
+		  }
+		  else {
+		      ctx.strokeStyle = "#fff";
+		      ctx.fillStyle = colours[c];
+		      ctx.fillRect(x * 10, y * 10, 10, 10);
+		  }
+		  ctx.beginPath();
+		  ctx.lineWidth = "1";
+		  ctx.rect(x * 10, y * 10, 10, 10);
+		  ctx.stroke();
+
+	      }
+	  }
+	  document.querySelector("#output").value = sprite.join();
+      }
+
+      render();
+    </script>
+
+  </body>
+</html>
