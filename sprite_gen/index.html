@@ -17,8 +17,11 @@
   </head>
   <body>
     <div id="colours"></div>
+    <br/>
+    <button id="fill">fill all</button><button id="filltransp">fill transparent</button>
+    <br/>
     <canvas id="canvas"></canvas>
-    <textarea id="output"></textarea>
+    <textarea id="output"></textarea><button id="parse">parse</button>
     <script>
       let currentColour = 0;
 
@@ -47,6 +50,7 @@
 	  let celm = document.createElement("div");
 	  celm.classList.add("colour");
 	  celm.style.backgroundColor = colour;
+	  celm.innerText = i;
 	  celm.addEventListener("click", function() {
 	      currentColour = Number(i);
 	      console.log(currentColour);
@@ -57,14 +61,12 @@
       let canvas = document.querySelector("#canvas");
       let ctx = canvas.getContext('2d');
       canvas.width = canvas.style.width = 160;
-      canvas.width = canvas.style.width = 160;
+      canvas.height = canvas.style.height = 160;
 
-      let sprite = Array(256);
-      for(let i = 0; i < 256; i++) {sprite[i] = 0x10;}
+      let sprite = Array(16 * 16);
+      for(let i = 0; i < 16 * 16; i++) {sprite[i] = 0x10;}
 
       canvas.addEventListener("click", function(e) {
-	  //console.log(e);
-	  console.log(sprite, ((e.layerY / 10) * 16), (e.layerX / 10));
 
 	  sprite[(Math.floor(e.layerY / 10) * 16) + Math.floor(e.layerX / 10)] = currentColour;
 	  render();
@@ -95,6 +97,24 @@
 	  }
 	  document.querySelector("#output").value = sprite.join();
       }
+
+      document.querySelector("#fill").addEventListener("click", function() {
+	  for(let i = 0; i < 256; i++) {
+	      sprite[i] =currentColour;
+	  }
+      });
+
+      document.querySelector("#filltransp").addEventListener("click", function() {
+	  for(let i = 0; i < 256; i++) {
+	      if(sprite[i] != 0x10)
+		  sprite[i] =currentColour;
+	  }
+      });
+
+      document.querySelector("#parse").addEventListener("click", function() {
+	  sprite = document.querySelector("#output").value.split(",");
+	  render();
+      });
 
       render();
     </script>

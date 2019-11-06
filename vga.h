@@ -42,7 +42,7 @@
 
 void set_mode(byte);
 void init_double_buffer();
-void clear_buffer();
+void clear_buffer(byte);
 void free_double_buffer();
 void putpixel(int x, int y, int c);
 void show_buffer();

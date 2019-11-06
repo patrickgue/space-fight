@@ -24,9 +24,9 @@ void init_double_buffer()
 }
 
 
-void clear_buffer()
+void clear_buffer(byte c)
 {
-  memset(screenptr, 0x0, SCREEN_SIZE);
+  memset(screenptr, c, SCREEN_SIZE);
 }
 
 
@@ -47,7 +47,7 @@ void set_mode(byte mode)
 
 void putpixel(int x, int y, int c)
 {
-  screenptr[x + (y * SCREEN_WIDTH)] = c;
+  screenptr[(y<<8) + (y<<6) + x] = c;
 }
 
 

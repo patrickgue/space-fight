@@ -2,6 +2,7 @@
 #define KEYBOARD_H
 
 #include <stdbool.h>
+#include "game.h"
 
 
 #define KEY_ESC 0x01
@@ -93,5 +94,7 @@
 
 bool key_pressed(int);
 int current_key_pressed(void);
+byte read_scancode();
+void free_keyb_buf();
 
 #endif
