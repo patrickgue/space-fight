@@ -89,11 +89,13 @@
 #define KEY_INS 0x52
 #define KEY_DEL 0x53
 #define KEY_F11 0x85
-#define KEY_F12 0x86
+#define KEY_F12 0x58
  
 
-bool key_pressed(int);
-int current_key_pressed(void);
+void init_keyboard();
+void update_pressed_keys();
+bool is_pressed(byte);
+void release_pressed(byte scancode);
 byte read_scancode();
 void free_keyb_buf();
 

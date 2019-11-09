@@ -1,0 +1,48 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+button {
+    padding:10px;
+}
+input {
+    width: 40px;
+}
+.colour {
+    height: 40px;
+}
+
+.colour.selected {
+    border: 2px dashed #fff;
+
+}
+
+canvas {
+    cursor: none;
+}
+
+.colourlist {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+}
+
+label {
+    display: block;
+}
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: auto;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 180px 1fr 1fr;
+    grid-gap: 20px;
+}

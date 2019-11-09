@@ -40,11 +40,14 @@
 #define NUM_COLORS          256       /* number of colors in mode 0x13 */
 
 
-void set_mode(byte);
+void set_mode(byte mode);
 void init_double_buffer();
-void clear_buffer(byte);
+void clear_buffer(byte color);
 void free_double_buffer();
 void putpixel(int x, int y, int c);
+void put_row(int x, int y, byte *c, byte size);
+void rect_fill(int x, int y, int width, int height, byte color);
+
 void show_buffer();
 
 #endif

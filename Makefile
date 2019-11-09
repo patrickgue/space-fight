@@ -1,4 +1,4 @@
-obj = keyboard.obj main.obj vga.obj sprite.obj
+obj = keyboard.obj main.obj vga.obj sprite.obj text.obj log.obj menu.obj
 bin = game.exe
 
 CC = wcc

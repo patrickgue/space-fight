@@ -8,16 +8,19 @@
 
 #include "vga.h"
 
+/* double buffer */
+byte far *double_buffer;
 
-byte far *screenptr;
-byte *VGA=(byte *)0xA0000000L;        /* this points to video memory. */
+/* Pointer to VGA memory */
+byte *VGA=(byte *)0xA0000000L;
+
 
 
 
 void init_double_buffer()
 {
-  screenptr = (byte*) malloc(320 * 200);
-  if(screenptr == NULL) {
+  double_buffer = (byte*) malloc(320 * 200);
+  if(double_buffer == NULL) {
     printf("Not enough memory\n");
     exit(1);
   }
@@ -26,13 +29,13 @@ void init_double_buffer()
 
 void clear_buffer(byte c)
 {
-  memset(screenptr, c, SCREEN_SIZE);
+  memset(double_buffer, c, SCREEN_SIZE);
 }
 
 
 void free_double_buffer()
 {
-  free(screenptr);
+  free(double_buffer);
 }
 
 void set_mode(byte mode)
@@ -47,15 +50,32 @@ void set_mode(byte mode)
 
 void putpixel(int x, int y, int c)
 {
-  screenptr[(y<<8) + (y<<6) + x] = c;
+  double_buffer[(y<<8) + (y<<6) + x] = c;
+}
+
+void put_row(int x, int y, byte *color, byte size)
+{
+  byte far *p;
+
+  p=double_buffer + y*SCREEN_WIDTH +x;
+
+  _fmemcpy(p, color, size);
+
+}
+
+void rect_fill(int x, int y, int width, int height, byte colour)
+{
+  byte far *p;
+	
+  p=double_buffer + y*SCREEN_WIDTH +x;
+  while ( height--) {
+    _fmemset(p, colour, width);
+    p+=SCREEN_WIDTH;
+  }
 }
 
 
 void show_buffer()
 {
-  #ifdef VERTICAL_RETRACE
-  //while ((inp(INPUT_STATUS_1) & VRETRACE));
-  //  while (!(inp(INPUT_STATUS_1) & VRETRACE));
-  #endif
-    memcpy((void*)VGA, (void*)screenptr,SCREEN_SIZE);
+  memcpy((void*)VGA, (void*)double_buffer,SCREEN_SIZE);
 }

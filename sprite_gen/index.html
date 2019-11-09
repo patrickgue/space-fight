@@ -1,123 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Sprite Maker</title>
-    <meta charset="utf-8" />
-    <style>
-      body {
-	  font-family: sans-serif;
-      }
 
-      .colour {
-	  width: 40px;
-	  height: 40px;
-	  display: inline-block;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="colours"></div>
-    <br/>
-    <button id="fill">fill all</button><button id="filltransp">fill transparent</button>
-    <br/>
-    <canvas id="canvas"></canvas>
-    <textarea id="output"></textarea><button id="parse">parse</button>
-    <script>
-      let currentColour = 0;
+<head>
+	<title>Sprite Maker</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="css/index.css" />
+</head>
 
-      let colours = [
-	  "#000000",//0x00
-	  "#0000AA",//0x01
-	  "#00AA00",//0x02
-	  "#00AAAA",//0x03
-	  "#AA0000",//0x04
-	  "#AA00AA",//0x05
-	  "#AA5500",//0x06
-	  "#AAAAAA",//0x07
-	  "#555555",//0x08
-	  "#5555FF",//0x09
-	  "#55FF55",//0x0a
-	  "#55FFFF",//0x0b
-	  "#FF5555",//0x0c
-	  "#FF55FF",//0x0d
-	  "#FFFF55",//0x0e
-	  "#FFFFFF",//0x0f
-	  "#000000" //0x10
-      ];
+<body>
+	<div class="container">
+		<h1>Sprite Designer</h1>
+		<div class="layout">
+			<div>
+				<h2>Sprite Settings</h2>
+				<i>Warning: Resizing will clear the current sprite!</i>
+				<label>
+					<span>Sprite Width</span>
+					<input class="spriteset" value="16" id="width" type="number" />
+				</label>
+				<label>
+				<span>Sprite height</span>
+					<input class="spriteset" value="16" id="height" type="number" />
+				</label>
+			</div>
+			
+			<div>
+				<button id="fill">fill all</button> 
+				<button id="filltransp">fill transparent</button>
+				W: <input class="brushset" id="brushw" type="number" value="1"/>
+				H: <input class="brushset" id="brushh" type="number" value="1"/>
+				S: <input class="brushset" id="scale" type="number" value="10"/><br/>
+				<canvas id="canvas"></canvas>
+			</div>
 
-      for(let i in colours) {
-	  let colour = colours[i];
-	  let celm = document.createElement("div");
-	  celm.classList.add("colour");
-	  celm.style.backgroundColor = colour;
-	  celm.innerText = i;
-	  celm.addEventListener("click", function() {
-	      currentColour = Number(i);
-	      console.log(currentColour);
-	  });
-	  document.querySelector("#colours").appendChild(celm);
-      }
-      
-      let canvas = document.querySelector("#canvas");
-      let ctx = canvas.getContext('2d');
-      canvas.width = canvas.style.width = 160;
-      canvas.height = canvas.style.height = 160;
+			<div class="colourlist" id="colours"></div>
+			
+		</div>
+		<textarea id="output"></textarea><button id="parse">parse</button>
+	</div>
+	<script src="app/colours.js"></script>
+	<script src="app/app.js"></script>
+	<script>
+	init();
+	</script>
+</body>
 
-      let sprite = Array(16 * 16);
-      for(let i = 0; i < 16 * 16; i++) {sprite[i] = 0x10;}
-
-      canvas.addEventListener("click", function(e) {
-
-	  sprite[(Math.floor(e.layerY / 10) * 16) + Math.floor(e.layerX / 10)] = currentColour;
-	  render();
-      });
-
-      function render() {
-	  ctx.clearRect(0,0,160,160);
-	  
-	  for(let x = 0; x < 16; x++) {
-	      for(let y = 0; y < 16; y++) {
-		  let c =sprite[(y * 16) + x];
-		  if(c == 0x10) {
-		      ctx.strokeStyle = "#000";
-		      ctx.fillStyle = "#000000";
-		      ctx.fillRect(x * 10 + 4, y * 10 + 4, 2, 2);
-		  }
-		  else {
-		      ctx.strokeStyle = "#fff";
-		      ctx.fillStyle = colours[c];
-		      ctx.fillRect(x * 10, y * 10, 10, 10);
-		  }
-		  ctx.beginPath();
-		  ctx.lineWidth = "1";
-		  ctx.rect(x * 10, y * 10, 10, 10);
-		  ctx.stroke();
-
-	      }
-	  }
-	  document.querySelector("#output").value = sprite.join();
-      }
-
-      document.querySelector("#fill").addEventListener("click", function() {
-	  for(let i = 0; i < 256; i++) {
-	      sprite[i] =currentColour;
-	  }
-      });
-
-      document.querySelector("#filltransp").addEventListener("click", function() {
-	  for(let i = 0; i < 256; i++) {
-	      if(sprite[i] != 0x10)
-		  sprite[i] =currentColour;
-	  }
-      });
-
-      document.querySelector("#parse").addEventListener("click", function() {
-	  sprite = document.querySelector("#output").value.split(",");
-	  render();
-      });
-
-      render();
-    </script>
-
-  </body>
 </html>
