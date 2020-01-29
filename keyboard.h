@@ -95,6 +95,7 @@
 void init_keyboard();
 void update_pressed_keys();
 bool is_pressed(byte);
+bool is_pressed_single(byte);
 void release_pressed(byte scancode);
 byte read_scancode();
 void free_keyb_buf();

@@ -54,6 +54,18 @@ bool is_pressed(byte scancode) {
   return currently_pressed[scancode];
 }
 
+bool is_pressed_single(byte scancode) {
+  if(is_pressed(scancode)) {
+    while(is_pressed(scancode))
+      update_pressed_keys();
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+
 
 void release_pressed(byte scancode)
 {
