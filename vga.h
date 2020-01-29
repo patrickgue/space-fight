@@ -46,7 +46,8 @@ void clear_buffer(byte color);
 void free_double_buffer();
 void putpixel(int x, int y, int c);
 void put_row(int x, int y, byte *c, byte size);
-void rect_fill(int x, int y, int width, int height, byte color);
+void rect_fill(int,int,int,int, byte color);
+
 
 void show_buffer();
 
