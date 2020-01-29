@@ -1,3 +1,4 @@
 *.OBJ
 *.EXE
 *.ERR
+.DS_Store
