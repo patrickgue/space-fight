@@ -1,8 +1,8 @@
-obj = keyboard.obj main.obj vga.obj sprite.obj text.obj log.obj menu.obj
+obj = keyboard.obj main.obj vga.obj sprite.obj text.obj log.obj menu.obj game.obj
 bin = game.exe
 
 CC = wcc
-CFLAGS = -zq -ml
+CFLAGS = -zq -ml -3
 LD = wlink
 
 $(bin): $(obj)
