@@ -9,10 +9,10 @@ typedef unsigned short word;
 typedef unsigned long  dword;
 
 struct s_bullet {
-  int x;
-  int y;
-  bool type; /* false = from spaceship, true = from ufo */
-  byte direction;
+    int x;
+    int y;
+    bool type; /* false = from spaceship, true = from ufo */
+    byte direction;
 };
 typedef struct s_bullet bullet;
 #define SPACESHIP_BULLET false;
@@ -21,10 +21,10 @@ typedef struct s_bullet bullet;
 #define MAX_BULLETS 256
 
 struct s_ufo {
-  int x;
-  int y;
-  bool direction;
-  byte life;
+    int x;
+    int y;
+    bool direction;
+    byte life;
 };
 
 typedef struct s_ufo ufo;
