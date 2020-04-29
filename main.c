@@ -49,16 +49,13 @@ int main(int argc, char **argv)
     
     }
     else {
-	while(is_pressed(KEY_ENTER))
-	    update_pressed_keys();
-	free_keyb_buf();
+	while(is_pressed(KEY_ENTER));
     }
   
     while(main_menu_loop) {
 	clear_buffer(104);
 	show_menu(0x20, 0x20, 0x100, 0x88, main_menu, main_menu_option_length, main_menu_selection, "SPACE FIGHTER");
     
-	update_pressed_keys();
 	if(main_menu_selection > 0 && is_pressed_single(KEY_UP))
 	    main_menu_selection--;
 	if(main_menu_selection < main_menu_option_length - 1 && is_pressed_single(KEY_DOWN))
@@ -88,10 +85,11 @@ int main(int argc, char **argv)
 
 
 
-  
+    reset_keyboard();
     free_double_buffer();
     set_mode(TEXT_MODE);
     close_log();
     free_keyb_buf();
+
     return 1;
 }

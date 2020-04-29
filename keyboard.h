@@ -93,11 +93,12 @@
  
 
 void init_keyboard();
-void update_pressed_keys();
+static void interrupt update_pressed_keys(void);
 bool is_pressed(byte);
 bool is_pressed_single(byte);
 void release_pressed(byte scancode);
 byte read_scancode();
 void free_keyb_buf();
+void reset_keyboard();
 
 #endif

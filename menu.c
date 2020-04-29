@@ -71,10 +71,8 @@ void splash_screen()
 
     release_pressed(KEY_ENTER);
 
-    while(!is_pressed(KEY_ENTER))
-	update_pressed_keys();
-    while(is_pressed(KEY_ENTER))
-	update_pressed_keys();
+    while(!is_pressed(KEY_ENTER));
+    while(is_pressed(KEY_ENTER));
 
 }
 
@@ -115,7 +113,6 @@ void show_help()
 		print_narrow(20, 22 + (index * 9), help_text[index + help_selection], 104);
 	}
 
-	update_pressed_keys();
 	if(is_pressed_single(KEY_ESC))
 	    show_help_loop = false;
 

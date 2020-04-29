@@ -22,19 +22,25 @@ int map_coordinate(int x_orig, int x_offset, int y_orig, int map_size)
 void draw_map(byte *map, int map_size, int x)
 {
     int map_x, map_y;
-    for(map_x = map_size-1; map_x >= 0; map_x--) {
-	if(x + (map_x * 0x14) + (0x6 * 0xb) + 32 > 0 && x + (map_x * 0x14) < SCREEN_WIDTH + 32) {
-	    for(map_y = 0; map_y < 11; map_y++) {
+    for(map_x = map_size-1; map_x >= 0; map_x--)
+    {
+	if(x + (map_x * 0x14) + (0x6 * 0xb) + 32 > 0 && x + (map_x * 0x14) < SCREEN_WIDTH + 32)
+	{
+	    for(map_y = 0; map_y < 11; map_y++)
+	    {
 		int map_x_pos = x+(map_x * 0x14) + (map_y * 0x6);
 		byte tile = map[map_x + (map_size * map_y)];
 	
-		if(tile == 1) {
+		if(tile == 1)
+		{
 		    render_sprite(map_x_pos, map_y * 0xc+18,32,32, cube);
 		}
-		else if (tile == 2) {
+		else if (tile == 2)
+		{
 		    render_sprite(map_x_pos, map_y * 0xc+18+16, 32, 16, turret);
 		}
-		else if (tile == 3) {
+		else if (tile == 3)
+		{
 		    render_sprite(map_x_pos, map_y * 0xc+18+16, 32, 16, base);
 		}
 	    }
@@ -135,9 +141,7 @@ void game(byte *map, int map_size)
 	    print_narrow(4,SCREEN_HEIGHT - 12,fpst,0xF);
 	}
     
-	update_pressed_keys();
 	if(!pause) {
-      
 
 	    if(spacecraft > 0)
 		spacecraft--;
@@ -275,8 +279,7 @@ void game(byte *map, int map_size)
 		}
 		else if(menu_selection == 1) {
 		    loop = false;
-		    while(is_pressed(KEY_ENTER))
-			update_pressed_keys();
+		    while(is_pressed(KEY_ENTER));
 
 		}
 	    }
