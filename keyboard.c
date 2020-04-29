@@ -15,17 +15,6 @@ bool currently_pressed[0x80];
 static void interrupt (*old_keyb_int)();
 
 byte read_scancode() {
-    /*byte res;
-    _asm {
-	in al, 60h
-	    mov res, al
-	    in al, 61h
-	    or al, 128
-	    out 61h, al
-	    xor al, 128
-	    out 61h, al
-	    }
-	    return res;*/
     byte scancode = inp(0x60);
     outp(0x20, 0x20);
     return scancode;
