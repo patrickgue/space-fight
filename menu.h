@@ -8,7 +8,7 @@ static char help_text[23][46] =
     "#Description:",
     "",
     "Space Fight is a game where you ",
-    "have to fight a alien invasion",
+    "have to fight an alien invasion",
     "",
     "#Keys in the menu:",
     "",
