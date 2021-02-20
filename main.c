@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <conio.h>
-#include <mem.h>
+//#include <conio.h>
 
 #include "vga.h"
 #include "game.h"
@@ -16,8 +15,6 @@
 
 int main(int argc, char **argv)
 {
-
-  
     byte *map;
 
     int map_size = map1_size;
@@ -64,17 +61,17 @@ int main(int argc, char **argv)
 	if(is_pressed_single(KEY_ENTER)) {
 	    switch(main_menu_selection) {
 	    case 0:
-		map = (byte*) malloc(map_size * 11);
-		_fmemcpy(map, map1, map_size * 11);
-		game(map, map_size);
-		release_pressed(KEY_ENTER);
-		break;
+            map = (byte*) malloc(map_size * 11);
+            MEMCPY(map, map1, map_size * 11);
+            game(map, map_size);
+            release_pressed(KEY_ENTER);
+            break;
 	    case 1:
-		show_help();
-		break;
+            show_help();
+            break;
 	    case 2:
-		main_menu_loop = false;
-		break;
+            main_menu_loop = false;
+            break;
 	    }
 
 	}
@@ -82,7 +79,6 @@ int main(int argc, char **argv)
 	show_buffer();
     
     }
-
 
 
     reset_keyboard();

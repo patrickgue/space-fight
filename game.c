@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+#ifdef __DOS__
 #include <dos.h>
+#endif
+//TODO: handle sound
 
 #include "game.h"
 #include "keyboard.h"
@@ -178,9 +181,11 @@ void game(byte *map, int map_size)
 		    bullets_index = remove_bullet(bullets, i, bullets_index);
 		    if(map[coordinate] == 2) {
 			map[coordinate] = 0;
+#ifdef __DOS__
 			sound(200);
 			delay(100);
 			nosound();
+#endif
 		    }
 		}
 		//else if(bullets[i].x 
@@ -254,9 +259,11 @@ void game(byte *map, int map_size)
 		    bullets_index = remove_bullet(bullets, 0, bullets_index);
 		}
 		bullets[bullets_index++] = new_bullet;
-		sound(2000);
-		delay(5);
-		nosound();
+#ifdef __DOS__
+            sound(200);
+			delay(100);
+			nosound();
+#endif
 	    }
       
 	    if(is_pressed(KEY_LEFT) || is_pressed(KEY_RIGHT)

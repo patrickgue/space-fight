@@ -93,7 +93,11 @@
  
 
 void init_keyboard();
+#ifdef __DOS__
 static void interrupt update_pressed_keys(void);
+#else
+void update_pressed_keys(void);
+#endif
 bool is_pressed(byte);
 bool is_pressed_single(byte);
 void release_pressed(byte scancode);

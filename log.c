@@ -31,6 +31,11 @@ void log_err(char * msg)
     _log("ERRO", msg);
 }
 
+void log_debug(char * msg)
+{
+    _log("DEBG", msg);
+}
+
 
 void close_log()
 {

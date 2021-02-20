@@ -1,0 +1,16 @@
+PROG=game
+
+SRCS=game.c keyboard_raylib.c log.c main.c menu.c sprite.c text.c vga_raylib.c
+OBJS=$(SRCS:.c=.o)
+
+
+all:$(PROG)
+
+$(PROG):$(OBJS)
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+%.o:%.c
+	$(CC) -c $^ -o $@
+
+clean:
+	rm -f $(PROG) $(OBJS) *.OBJ

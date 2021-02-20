@@ -3,6 +3,15 @@
 
 #include <stdbool.h>
 
+#ifdef __DOS__
+#include <mem.h>
+#define MEMCPY(DST,SRC,SIZE) _fmemcpy(DST,SRC,SIZE)
+#else
+#include <string.h>
+#define MEMCPY(DST,SRC,SIZE) memcpy(DST,SRC,SIZE)
+#endif
+
+
 
 typedef unsigned char  byte;
 typedef unsigned short word;

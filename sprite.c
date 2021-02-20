@@ -4,7 +4,7 @@
 #include "sprite.h"
 #include "vga.h"
 
-#include <mem.h>
+// #include <mem.h>
 
 /* copy sprite to video buffer */
 void render_sprite(int x, int y, int w, int h, byte *sprite) {

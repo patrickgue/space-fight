@@ -1,5 +1,8 @@
 *.OBJ
 *.EXE
 *.ERR
+*.o
 .DS_Store
 LOG.TXT
+.idea
+game
