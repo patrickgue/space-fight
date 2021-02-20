@@ -25,3 +25,5 @@ and when compiling, it might be necessary to specify the correct Makefile as fol
 `make -f GNUmakefile`
 
 Tested on macOS 11 and Manjaro Linux.
+
+![Screenshot](./doc/screenshot3.png)

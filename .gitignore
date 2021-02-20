@@ -4,5 +4,6 @@
 *.o
 .DS_Store
 LOG.TXT
+log.txt
 .idea
 game
