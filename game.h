@@ -6,11 +6,14 @@
 #ifdef __DOS__
 #include <mem.h>
 #define MEMCPY(DST,SRC,SIZE) _fmemcpy(DST,SRC,SIZE)
+#define ACTION_KEY KEY_ENTER
+#define WHILE_WAIT(cond) while(cond)
 #else
 #include <string.h>
 #define MEMCPY(DST,SRC,SIZE) memcpy(DST,SRC,SIZE)
+#define ACTION_KEY KEY_SPACE
+#define WHILE_WAIT(cond) while(cond && !WindowShouldClose())
 #endif
-
 
 
 typedef unsigned char  byte;

@@ -4,8 +4,8 @@
 #include <stdbool.h>
 #include "game.h"
 
-
-#define KEY_ESC 0x01
+#ifdef __DOS__
+#define KEY_ESCAPE 0x01
 #define KEY_1 0x02
 #define KEY_2 0x03
 #define KEY_3 0x04
@@ -61,7 +61,7 @@
 #define KEY_RIGHT_SHIFT 0x36
 #define KEY_PRTSC 0x37
 #define KEY_ALT 0x38
-#define KEY_SPACEBAR 0x39
+#define KEY_SPACE 0x39
 #define KEY_CAPSLOCK 0x3A
 #define KEY_F1 0x3B
 #define KEY_F2 0x3C
@@ -90,6 +90,7 @@
 #define KEY_DEL 0x53
 #define KEY_F11 0x85
 #define KEY_F12 0x58
+#endif
  
 
 void init_keyboard();
@@ -98,9 +99,9 @@ static void interrupt update_pressed_keys(void);
 #else
 void update_pressed_keys(void);
 #endif
-bool is_pressed(byte);
-bool is_pressed_single(byte);
-void release_pressed(byte scancode);
+bool is_pressed(word);
+bool is_pressed_single(word);
+void release_pressed(word scancode);
 byte read_scancode();
 void free_keyb_buf();
 void reset_keyboard();

@@ -55,11 +55,11 @@ void reset_keyboard()
     _dos_setvect(0x09, old_keyb_int);
 }
 
-bool is_pressed(byte scancode) {
+bool is_pressed(word scancode) {
     return currently_pressed[scancode];
 }
 
-bool is_pressed_single(byte scancode) {
+bool is_pressed_single(word scancode) {
     if(is_pressed(scancode))
     {
 	while(is_pressed(scancode))
@@ -74,7 +74,7 @@ bool is_pressed_single(byte scancode) {
 
 
 
-void release_pressed(byte scancode)
+void release_pressed(word scancode)
 {
     currently_pressed[scancode] = false;
 }

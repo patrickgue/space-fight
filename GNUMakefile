@@ -1,5 +1,8 @@
 PROG=game
 
+CFLAGS+=$(shell pkg-config --cflags raylib) -g
+LDFLAGS+=$(shell pkg-config --libs raylib)
+
 SRCS=game.c keyboard_raylib.c log.c main.c menu.c sprite.c text.c vga_raylib.c
 OBJS=$(SRCS:.c=.o)
 
