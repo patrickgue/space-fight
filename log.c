@@ -4,14 +4,24 @@
 #include "log.h"
 
 FILE *log_file;
+enum e_log_output log_output_mode;
 
-void init_log() {
+void init_log(enum e_log_output mode) {
 
-    log_file = fopen("log.txt", "a");
-    if(!log_file) {
-	printf("Error opening log file\n");
-	exit(1);
+    if (mode == LOGFILE)
+    {
+        log_file = fopen("log.txt", "a");
+        if(!log_file)
+        {
+            printf("Error opening log file\n");
+            exit(1);
+        }
     }
+    else
+    {
+        log_file = stdout;
+    }
+
 }
 
 void _log(const char *type, char *msg) {

@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     if(argc > 1 && strcmp(argv[1], "-d") == 0)
         debug = true;
 
-    init_log();
+    init_log(STDOUT);
     init_keyboard();
 
     init_double_buffer();
