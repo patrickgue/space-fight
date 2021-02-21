@@ -2,47 +2,62 @@
 <html>
 
 <head>
-	<title>Sprite Maker</title>
-	<meta charset="utf-8" />
-	<link rel="stylesheet" href="css/index.css" />
+    <title>Sprite Maker</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/index.css" />
 </head>
 
 <body>
-	<div class="container">
-		<h1>Sprite Designer</h1>
-		<div class="layout">
-			<div>
-				<h2>Sprite Settings</h2>
-				<i>Warning: Resizing will clear the current sprite!</i>
-				<label>
-					<span>Sprite Width</span>
-					<input class="spriteset" value="16" id="width" type="number" />
-				</label>
-				<label>
-				<span>Sprite height</span>
-					<input class="spriteset" value="16" id="height" type="number" />
-				</label>
-			</div>
-			
-			<div>
-				<button id="fill">fill all</button> 
-				<button id="filltransp">fill transparent</button>
-				W: <input class="brushset" id="brushw" type="number" value="1"/>
-				H: <input class="brushset" id="brushh" type="number" value="1"/>
-				S: <input class="brushset" id="scale" type="number" value="10"/><br/>
-				<canvas id="canvas"></canvas>
-			</div>
+    <div class="container">
+        <h1>Sprite Designer</h1>
+        <div class="layout">
+            <div>
+                <h2>Sprite</h2>
+                <i>Warning: Resizing will clear<br/> the current sprite!</i>
+                <label>
+                    <span>Sprite Width</span>
+                    <input class="spriteset" value="16" id="width" type="number" />
+                </label>
+                <label>
+                    <span>Sprite height</span>
+                    <input class="spriteset" value="16" id="height" type="number" />
+                </label>
+                <h2>Drawing</h2>
+                <label>
+                    <span>Brush width</span>
+                    <input class="brushset" id="brushw" type="number" value="1" />
+                </label>
+                <label>
+                    <span>Brush height</span>
+                    <input class="brushset" id="brushh" type="number" value="1" />
+                </label>
+                <label>
+                    <button id="fill">fill all</button>
+                </label>
+                <label>
+                    <button id="filltransp">fill transparent</button>
+                </label>
+                <h2>View</h2>
+                <label>
+                    <span>Scale</span>
+                    <input class="brushset" id="scale" type="number" value="10" />
+                </label>
+            </div>
 
-			<div class="colourlist" id="colours"></div>
-			
-		</div>
-		<textarea id="output"></textarea><button id="parse">parse</button>
-	</div>
-	<script src="app/colours.js"></script>
-	<script src="app/app.js"></script>
-	<script>
-	init();
-	</script>
+            <div>
+                <canvas id="canvas"></canvas>
+            </div>
+
+            <div class="colourlist" id="colours"></div>
+
+        </div>
+        <textarea id="output"></textarea><button id="parse">parse</button>
+    </div>
+    <script src="app/colours.js"></script>
+    <script src="app/app.js"></script>
+    <script>
+        init();
+    </script>
 </body>
 
 </html>
