@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sprite Maker</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="layout">
+            <div class="menu">
+                <h1>Sprite Designer</h1>
+
+                <button id="new-sprite">New</button>
+                <button id="open-existing">Open Existing</button>
+                <hr/>
+                <button>Save</button>
+            </div>
+
+            <div  class="draw">
+                <div class="toolbar">
+                    <button id="clear" style="margin-right: 10px;">Clear All</button>
+                    <button id="fill" style="margin-right: 10px;">Fill All</button>
+                    <button id="filltransp" style="margin-right: 10px;">Fill Transparent</button>
+                    
+                    
+                    <label style="margin-right: 10px;">
+                        <span>Brush width</span>
+                        <input class="brushset" id="brushw" type="number" value="1" />
+                    </label>
+                    <label style="margin-right: 10px;">
+                        <span>Brush height</span>
+                        <input class="brushset" id="brushh" type="number" value="1" />
+                    </label>
+                    <button id="choose-color" style="display: flex;align-items: center;gap: 10px;"><div>Choose Color</div> <div id="color-preview"></div></button>
+                </div>
+                <canvas id="canvas"></canvas><br/>
+                <input style="width: 100%;" class="brushset" id="scale" type="range" min="1" max="50" step="1" value="20" />
+            </div>
+        </div>
+    </div>
+    <div id="colors-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <div class="colourlist" id="colours"></div>
+            <button id="close-color-modal">Close</button>
+        </div>
+    </div>
+    <div id="output-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <textarea style="width: 100%; height: 100px;" id="output"></textarea><br/>
+            <button id="parse">parse</button>
+        </div>
+    </div>
+    <div id="sprite-list-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <button id="close-sprite-list-modal" style="float: right; width: auto;">Close</button>
+            <h2>Sprites</h2>
+        </div>
+    </div>
+    <div id="new-sprite-modal" class="modal-backdrop">
+        <div class="modal-content form">
+            <button id="close-new-sprite-modal" style="float: right; width: auto;">Cancel</button>
+            <h2>New Sprite</h2>
+            <label>
+                <span>Name</span>
+                <input id="new-sprite-name" type="text" />
+            </label>
+            <label>
+                <span>Width</span>
+                <input id="new-sprite-width" type="number" />
+            </label>
+            <label>
+                <span>Height</span>
+                <input id="new-sprite-height" type="number" />
+            </label>
+            <button id="create-new-sprite"></button>
+        </div>
+    </div>
+    <div class="loading-overlay">
+        <div class="loading-animation"></div>
+    </div>
+    <script src="app/common.js"></script>
+    <script src="app/colours.js"></script>
+    <script src="app/app.js"></script>
+    <script>
+        init();
+    </script>
+</body>
+
+</html>
